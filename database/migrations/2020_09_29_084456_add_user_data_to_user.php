@@ -15,7 +15,11 @@ class AddUserDataToUser extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('hp')->nullable()->after("email");
-            $table->string('instansi')->nullable()->after("hp");
+            $table->unsignedInteger('affiliasi')->default(0)->after("hp");
+            $table->string('nama_bank')->nullable()->after("affiliasi");
+            $table->string('no_rek')->nullable()->after("nama_bank");
+            $table->string('nama_rek')->nullable()->after("no_rek");
+            $table->string('instansi')->nullable()->after("nama_rek");
             $table->string('ref')->nullable()->after("instansi");
             $table->string('ref_by')->nullable()->after("ref");
             $table->unsignedInteger('status_pembayaran')->default(0)->after("ref_by");

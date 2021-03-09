@@ -156,7 +156,10 @@
             </div>
             <div class="flex box p-2 flex-col sm:flex-row sm:items-end xl:items-start">
                 <div class="flex-auto items-center sm:mr-4 mt-3 xl:mt-0">
-                    <input type="text" id="db-search" placeholder="Pencarian .." class="input w-full border">
+                    <input type="text" id="db-search" placeholder="Nama .." class="input w-full border">
+                </div>
+                <div class="flex-auto items-center sm:mr-4 mt-3 xl:mt-0">
+                    <input type="text" id="db-search-unique" data-column="1" placeholder="Total tagihan .." class="input w-full border rupiah">
                 </div>
                 <div class="flex items-center sm:ml-auto mt-3 sm:mt-0">
                     <select id="db-jumlah" class="input border mr-2">
@@ -170,11 +173,25 @@
                     </select>
                     <a href="{{ route('admin.export.user') }}" target="_blank">
                         <button class="button box flex items-center bg-green-800 text-white dark:text-white-300"> <i
-                                data-feather="file-text" class="hidden sm:block w-4 h-4 mr-2"></i> Export to Excel
+                                data-feather="file-text" class="hidden sm:block w-4 h-4 xl:mr-2"></i> Export to Excel
                         </button>
                     </a>
                     <div class="text-center"> <a href="javascript:;" data-toggle="modal" data-target="#modalImport"
-                            class="button inline-block bg-theme-1 text-white">Import Order Online</a> </div>
+                            class="button inline-block bg-theme-1 xl:ml-2 text-white">Import Order Online</a> </div>
+                </div>
+            </div>
+
+            <div class="flex box p-2 flex-col sm:flex-row sm:items-end xl:items-start">
+                <div class="flex-auto items-center sm:mr-4 mt-3 xl:mt-0">
+                    <input id="db-verified-at" placeholder="Tanggal upload pembayaran .." data-daterange="true" class="input w-full text-center border block mx-auto">
+                </div>
+                <div class="flex items-center sm:ml-auto mt-3 sm:mt-0">
+                    <select id="db-status" class="input border mr-2">
+                        <option selected value="-1">Semua data</option>
+                        <option value="1">Sudah diverifikasi</option>
+                        <option value="2">Sudah melakukan pembayaran</option>
+                        <option value="3">Belum melakukan pembayaran</option>
+                    </select>
                 </div>
             </div>
 
@@ -195,15 +212,17 @@
             </div>
 
             <div class="intro-y overflow-auto lg:overflow-visible mt-8 sm:mt-0 my-3">
-                <table class="table table-report sm:mt-2" id="userTableData">
+                <table class="table table-report sm:mt-2" id="userTableData" style="width: 100%">
                     <thead>
                         <tr>
                             <th class="whitespace-no-wrap bg-white">MENGUNDANG</th>
+                            <th class="whitespace-no-wrap bg-white">UNIQUE<br>NUMBER</th>
                             <th class="whitespace-no-wrap bg-white">NAMA<br>LENGKAP</th>
                             <th class="text-center whitespace-no-wrap bg-white">JUMLAH<br>TERUNDANG</th>
+                            <!--<th class="text-center whitespace-no-wrap bg-white">GEL</th>-->
                             <th class="text-center whitespace-no-wrap bg-white">TOTAL<br>TAGIHAN</th>
                             <th class="text-center whitespace-no-wrap bg-white">BUKTI<br>PEMBAYARAN</th>
-                            <th class="text-center whitespace-no-wrap bg-white">STATUS<br>PEMBAYARAN</th>
+                            <th class="text-center whitespace-no-wrap bg-white">STATUS</th>
                             <th class="text-center whitespace-no-wrap bg-white">PROSES</th>
                         </tr>
                     </thead>
@@ -215,6 +234,58 @@
     </div>
 </div>
 <!-- END: Content -->
+
+ <div class="modal" id="basic-modal-preview">
+    <div class="modal__content modal__content--lg p-10 text-center relative"><a data-dismiss="modal" href="javascript:;" class="absolute right-0 top-0 mt-3 mr-3"> <i data-feather="x" class="w-8 h-8 text-gray-500"></i> </a>
+        <div class="intro-y box p-5">
+            <div class="flex">
+                <div class="mr-auto font-medium text-base"><h2 class="text-lg font-medium mr-auto mt-2" id="nama"></h2></div>
+                <!-- <div class="font-medium text-base">$220</div> -->
+            </div>
+            <div class="flex pt-4 border-t border-gray-200 dark:border-dark-5">
+                <div class="mr-auto">Email</div>
+                <div class="text-theme-6" id="email"></div>
+            </div>
+            <div class="flex mt-4">
+                <div class="mr-auto">No.Tlp/HP</div>
+                <div id="hp"></div>
+            </div>
+            <div class="flex mt-4 pt-4 border-t border-gray-200 dark:border-dark-5">
+                <div class="mr-auto font-medium text-base">Status Pembayaran</div>
+                <div class="font-medium text-base" id="stts_pembayaran"></div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+<script src="https://cdn.jsdelivr.net/npm/litepicker/dist/js/main.js"></script>
+<script type="text/javascript">
+	$(document).ready(() => {
+
+        $(document).on('keyup', ".rupiah",  function () {
+            this.value = formatRupiah(this.value, "");
+        });
+
+        /* Fungsi formatRupiah */
+        function formatRupiah(angka, prefix) {
+            var number_string = angka.replace(/[^,\d]/g, "").toString(),
+                split = number_string.split(","),
+                sisa = split[0].length % 3,
+                rupiah = split[0].substr(0, sisa),
+                ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+            // tambahkan titik jika yang di input sudah menjadi angka ribuan
+            if (ribuan) {
+                separator = sisa ? "." : "";
+                rupiah += separator + ribuan.join(".");
+            }
+
+            rupiah = split[1] != undefined ? rupiah + "," + split[1] : rupiah;
+            return prefix == undefined ? rupiah : rupiah ? rupiah : "";
+        }
+
+    })
+</script>
 
 <script>
     function proses_pembayaran(id) {
@@ -253,18 +324,29 @@
         })
     }
 
+    var startDate, endDate;
+
     var table = $('#userTableData').DataTable({
         dom : 'Brtp',
         processing: true,
         serverSide: true,
-        ajax: "{{ route('admin.dashboard') }}",
-        aaSorting: [],
+        ajax: {
+            url : "{{ route('admin.dashboard') }}",
+            data : function (d) {
+                d.id = $('#db-search-unique').val();
+                d.startDate = startDate;
+                d.endDate = endDate;
+                d.status = $('#db-status').val();
+            }
+        },
         pageLength: 5,
         columns: [
             {data: 'mengundang', name: 'mengundang', orderable: false, searchable: false},
             // {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
+            {data: 'unique_number', name: 'unique_number'},
             {data: 'name', name: 'name'},
             {data: 'total_mengundang', name: 'total_mengundang'},
+            // {data: 'gel', name: 'gel'},
             // {data: 'ref', name: 'ref'},
             // {data: 'diundang_oleh', name: 'diundang_oleh'},
             {data: 'total_tagihan', name: 'total_tagihan'},
@@ -274,12 +356,46 @@
         ]
     });
 
+    var picker = new Litepicker(
+        { 
+            element: document.getElementById('db-verified-at'),
+            format: 'DD/MM/YYYY' ,
+            singleMode: false,
+            numberOfColumns: 2,
+            numberOfMonths: 2,
+            showWeekNumbers: true,
+            singleMode: false,
+            numberOfColumns: 2,
+            numberOfMonths: 2,
+            showWeekNumbers: true,
+            dropdowns: {
+                minYear: 1990,
+                maxYear: null,
+                months: true,
+                years: true
+            },
+            onSelect: function(date1, date2){
+                startDate = date1.valueOf();
+                endDate = date2.valueOf();
+                table.draw(false);
+            }
+        }
+    );
+
+    $('#db-search-unique').keyup(function(){
+        table.columns(1).search( $(this).val() ).draw();
+    });
+
     $('#db-search').keyup(function(){
-        table.search( $(this).val() ).draw();
+        table.columns(2).search( $(this).val() ).draw();
     });
 
     $('#db-jumlah').on('change', function(){
         table.page.len($(this).val()).draw();
+    });
+
+    $('#db-status').on('change', function(){
+        table.draw(false);
     });
 
     $('#importOrderOnlineForm').submit(function(e) {
@@ -311,5 +427,29 @@
             }
         });
     });
+    
+  function detail_users(id){
+    user_id = id;
+    //Ajax Load data from ajax
+    $.ajax({
+        url : "{{ route('admin.detail_user') }}/" + user_id,
+        type: "GET",
+        dataType: "JSON",
+        success: function(data)
+        {
+            $('#nama').text(data.peserta['name']);
+            $('#email').text(data.peserta['email']);
+            $('#hp').text(data.peserta['hp']);
+            $('#terundang').text(data.julah_terundang);
+            $('#membayar').text(data.julah_terverifikasi);
+            $('#stts_pembayaran').text(data.stts_pembayaran);
+
+        },
+        error: function (jqXHR, textStatus, errorThrown)
+        {
+            alert('Error get data from ajax');
+        }
+    });
+  }
 </script>
 @endsection

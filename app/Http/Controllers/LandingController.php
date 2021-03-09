@@ -32,7 +32,7 @@ class LandingController extends Controller
             $data['user'] = User::with('pembayaran.file')->where('email', session('lpkn_ref_email'))->first();
         }
 
-        return view('pages.landing', $data);
+        return view('pages.landing_page', $data);
     }
     
     public function set_sess(Request $request){

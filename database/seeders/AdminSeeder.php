@@ -20,7 +20,7 @@ class AdminSeeder extends Seeder
         ],
         [
         	'name' => 'Admin LPKN',
-        	'password' => Hash::make('hazenfield!')
+        	'password' => Hash::make('adminlpkn123')
         ]);
         $vd->assignRole('admin');
     }

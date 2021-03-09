@@ -9,18 +9,19 @@
   <!-- This site is optimized with the Yoast SEO plugin v14.9 - https://yoast.com/wordpress/plugins/seo/ -->
   <title>Referral Saya</title>
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-  <link rel="canonical" href="https://www.sekolahpengadaan.id/instalasi/">
+  <link rel="canonical" href="https://mahirmenulis.diklatonline.id/">
   <meta property="og:locale" content="en_US">
   <meta property="og:type" content="article">
   <meta property="og:title"
-    content="Panduan Instalasi Program Bermanfaat ke Pikiran Bawah Sadar - Bimtek Pengadaan Dan Pelatihan Pendidikan">
+    content="WORKSHOP ONLINE Menulis">
   <meta property="og:description"
-    content="WORKSHOP ONLINE Panduan Instalasi Program Bermanfaat ke Pikiran Bawah Sadar + Kelas “8 LIFE SKILLS UNTUK MERAIH SUKSES” Sabtu, 21 November 202009.30 – 15.00 WIB (09.30 – 11.30 &amp; 13.00 – 15.00) Daftar Sekarang juga Daftar Sekarang juga Bagaimana cara menanamkan program sukses di pikiran bawah sadar, sehingga apapun goal yang Anda inginkan, dapat lebih mudah …">
-  <meta property="og:url" content="https://www.sekolahpengadaan.id/instalasi/">
+    content="WORKSHOP ONLINE Menulis SEMUDAH TERSENYUM & UPDATE STATUS
+(Strategi Membuat tulisan yang Menarik dan Laris) …">
+  <meta property="og:url" content="https://mahirmenulis.diklatonline.id/">
   <meta property="og:site_name" content="Bimtek Pengadaan Dan Pelatihan Pendidikan">
   <meta property="article:modified_time" content="2020-10-21T09:45:41+00:00">
   <meta property="og:image"
-    content="https://instalasiprogram.diklatonline.id/instalasi/WhatsApp-Image-2020-10-20-at-21.24.18.jpeg">
+    content="{{ asset("brosur_menulis.jpg")}}">
   <meta name="twitter:card" content="summary_large_image">
 
   <!-- mdb -->
@@ -2227,7 +2228,7 @@
     }
 
     .elementor-8078 .elementor-element.elementor-element-3372cd0f>.elementor-background-overlay {
-      background-image: url("https://www.sekolahpengadaan.id/wp-content/uploads/2020/10/Brain-scaled.jpg");
+      background-image: url({{ asset("pron/img/header_menulis.jpg")}});
       background-position: center center;
       background-repeat: no-repeat;
       background-size: cover;
@@ -2517,7 +2518,7 @@
     }
 
     .elementor-8078 .elementor-element.elementor-element-a2d07b6>.elementor-background-overlay {
-      background-image: url("https://www.sekolahpengadaan.id/wp-content/uploads/2020/10/Brain2.jpg");
+      background-image: url({{ asset("pron/img/header_menulis.jpg")}});
       background-position: bottom center;
       background-repeat: no-repeat;
       background-size: cover;
@@ -2649,7 +2650,7 @@
     }
 
     .elementor-8078 .elementor-element.elementor-element-47f37670>.elementor-background-overlay {
-      background-image: url("https://www.sekolahpengadaan.id/wp-content/uploads/2020/10/Brain2.jpg");
+      background-image: url({{ asset("pron/img/header_menulis.jpg")}});
       background-position: center center;
       background-repeat: no-repeat;
       background-size: cover;
@@ -2714,7 +2715,7 @@
     }
 
     .elementor-8078 .elementor-element.elementor-element-70edbed4>.elementor-background-overlay {
-      background-image: url("https://www.sekolahpengadaan.id/wp-content/uploads/2020/10/Brain2.jpg");
+      background-image: url({{ asset("pron/img/header_menulis.jpg")}});
       background-position: center center;
       background-repeat: no-repeat;
       background-size: cover;
@@ -4405,6 +4406,7 @@ document,'script','https://connect.facebook.net/en_US/fbevents.js');
                         </p>
                       </div>
                     </div>
+                    @if ($user->affiliasi == 1)
                     <div class="elementor-element elementor-element-2f2e7ebc elementor-widget elementor-widget-heading"
                       data-id="2f2e7ebc" data-element_type="widget" data-widget_type="heading.default">
                       <div class="elementor-widget-container">
@@ -4414,9 +4416,11 @@ document,'script','https://connect.facebook.net/en_US/fbevents.js');
                           {{ $user->ref }}</p>
                       </div>
                     </div>
+                    @endif
                     <div
                       class="elementor-element elementor-element-820db07 elementor-align-center elementor-widget elementor-widget-button"
                       data-id="820db07" data-element_type="widget" data-widget_type="button.default">
+                      @if ($user->affiliasi == 1)
                       <div class="row">
                         <div class="col-md-3"></div>
                         <div class="col-md-6">
@@ -4425,19 +4429,20 @@ document,'script','https://connect.facebook.net/en_US/fbevents.js');
                         </div>
                         <div class="col-md-3"></div>
                       </div>
+                      @endif
                       @if (session('lpkn_ref_email') && isset($user) && $user->status_pembayaran == 0)
                         @if (isset($user->pembayaran))
                           <div class="alert alert-danger text-center" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                               <span aria-hidden="true">&times;</span>
                             </button>
-                            <h2 class="alert-heading">Setelah pembayaran terverifikasi, kami akan segera mengirimkan Anda email, mohon periksa kotak masuk atau kotak spam email Anda secara berkala.</h2>
+                            <h2 class="alert-heading">Setelah pembayaran terverifikasi, kami akan segera mengirimkan Anda <b>WhatsApp</b> atau <b>Email</b>, mohon periksa kotak masuk atau kotak spam email Anda secara berkala.</h2>
                           </div>
                         @else
                         <div class="row">
                           @if (session('lpkn_ref_email'))
                           @php
-                          $harga = 145000;
+                          $harga = env('HARGA_EVENT', 0);
                           $total_harga = (int) $harga + $user->id;
                           @endphp
                           <div class="col-12">
@@ -4450,13 +4455,48 @@ document,'script','https://connect.facebook.net/en_US/fbevents.js');
                               <form id="uploadPembayaranForm" action="{{ route('acara.pembayaran') }}" method="POST">
                                 <div class="text-center border border-light p-3 mb-4">
                                   <center>
-                                    <img width="120" height="30" src="{{ asset("instalasi/BRI.png") }}"
+                                    <img width="120" height="30" src="{{ asset("pron/img/logo-bank-bri.jpg") }}"
                                       class="attachment-large size-large" alt="" loading="lazy">
-                                  </center>
-                                  <p class="text-white mb-2">No. Rek. 213501000250301</p>
-                                  <p style="font-size: 10pt" class="text-white">Atas Nama: <b>Lembaga Pengembangan dan Konsultasi
+                                  </center><br/>
+                                  <!-- <p class="text-white mb-2" style="font-size: 13pt">No. Rek. <b>213501000250301</b></p> -->
+                                  <p class="text-white mb-2" style="font-size: 13pt;">No. Rek. <b><input type="text" readonly style="color: black" name="no_rek" id="no_rek" value="213501000250301"></b>
+                                    <a class="btn btn-success btn-sm" onClick="copy_text()">Copy</a>
+                                  </p>
+                                  <p style="font-size: 13pt" class="text-white">Atas Nama: <b>Lembaga Pengembangan dan Konsultasi
                                       Nasional</b></p>
+                                      <script>
+                                        function copy_text() {
+                                          var copyText = document.getElementById("no_rek");
+                                          copyText.select();
+                                          copyText.setSelectionRange(0, 99999)
+                                          document.execCommand("copy");
+                                          alert("Berhasil Menyalin Nomor Rekening");
+                                        }
+                                      </script>
                                 </div>
+                                
+                                <div class="text-center border border-light p-3 mb-4">
+                                  <center>
+                                    <img width="220" src="{{ asset("pron/img/logo-bank-mandiri.png") }}"
+                                      class="attachment-large size-large" alt="" loading="lazy">
+                                  </center><br/>
+                                  <!-- <p class="text-white mb-2" style="font-size: 13pt">No. Rek. <b>213501000250301</b></p> -->
+                                  <p class="text-white mb-2" style="font-size: 13pt;">No. Rek. <b><input type="text" readonly style="color: black" name="no_rek_mandiri" id="no_rek_mandiri" value="0060010942294"></b>
+                                    <a class="btn btn-success btn-sm" onClick="copy_text_mandiri()">Copy</a>
+                                  </p>
+                                  <p style="font-size: 13pt" class="text-white">Atas Nama: <b>Lembaga Pengembangan dan Konsultasi
+                                      Nasional</b></p>
+                                      <script>
+                                        function copy_text_mandiri() {
+                                          var copyText = document.getElementById("no_rek_mandiri");
+                                          copyText.select();
+                                          copyText.setSelectionRange(0, 99999)
+                                          document.execCommand("copy");
+                                          alert("Berhasil Menyalin Nomor Rekening");
+                                        }
+                                      </script>
+                                </div>
+                                
       
                                 {{-- <input type="text" name="nama_rekening" id="nama_rekening_id" class="form-control mb-4"
                                   placeholder="Nama Pemilik Rekening" required>
@@ -4473,13 +4513,20 @@ document,'script','https://connect.facebook.net/en_US/fbevents.js');
                                         class="fas fa-file-upload"></i></span>
                                   </div>
                                   <div class="custom-file">
-                                    <input type="file" name="file" class="custom-file-input" id="inputGroupFile01"
-                                      aria-describedby="inputGroupFileAddon01" required>
+                                    <input type="file" name="file" class="custom-file-input"  required>
                                     <label class="custom-file-label" for="inputGroupFile01">Bukti Transfer</label>
                                   </div>
                                 </div>
                                 <button type="submit" class="btn btn-yellow text-black">Upload</button>
                               </form>
+                          @if ($user->affiliasi == 1)
+                          <div class="alert alert-danger text-center" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h5 class="alert-heading">Apabila anda hanya sebagai <b>Affiliate Marketing</b> saja, <b>abaikan</b> Form diatas</h5>
+                          </div>
+                          @endif
                             </div>
                           </div>
                         @endif
@@ -4492,6 +4539,7 @@ document,'script','https://connect.facebook.net/en_US/fbevents.js');
             </div>
           </div>
         </section>
+        @if ($user->affiliasi == 1)
         <section
           class="elementor-section elementor-top-section elementor-element elementor-element-11abf90c elementor-section-boxed elementor-section-height-default elementor-section-height-default"
           data-id="11abf90c" data-element_type="section"
@@ -4507,22 +4555,33 @@ document,'script','https://connect.facebook.net/en_US/fbevents.js');
                     <div class="elementor-element elementor-element-221c6426 elementor-widget elementor-widget-heading"
                       data-id="221c6426" data-element_type="widget" data-widget_type="heading.default">
                       <div class="elementor-widget-container mb-3">
-                        <p class="elementor-heading-title elementor-size-default mb-2">Apakah anda tertarik bergabung  <span style="color: #FFA300;">menjadi affiliate kami?</span></p>
-                        <h4>Silahkan share Informasi ini, Anda berpeluang mendapatkan Hadiah.<br> Juara berdasarkan Jumlah terbanyak dari peserta yang daftar melalui Link registrasi Anda.</h4>
-                        <span class="fas fa-gift text-warning fa-3x btn-icon__inner"></span>
+                        <p class="elementor-heading-title elementor-size-default mb-3">Ingin Mendapatkan Penghasilan tambahan ?<br/><span style="color:red">Hanya dengan Share Informasi ini ke Rekan rekan Anda..</span><br/>
+                        Cara Kerja Affiliate :</p>
+                        <!-- <h4 class="h4 mb-2">Silahkan share Informasi ini, Anda berpeluang mendapatkan Hadiah.<br> Juara berdasarkan Jumlah terbanyak dari peserta yang daftar melalui Link registrasi Anda.</h4> -->
+                        <div class="col-md-9 offset-md-2 text-left">
+                          <ul class="mb-3" style="list-style-type: square;font-size:20px;color: #000;">
+                            <li>Mendaftar sebagai <b>Affiliate</b> Kegiatan</li>
+                            <li>Mendapatkan <b>Bahan Promosi</b></li>
+                            <li>Share bahan Promosi</li>
+                            <li>Setiap orang yang <b>mendaftarkan diri</b> melalui <b>Link Promosi Anda</b>, akan <b>otomatis tercatat dan anda dapat pantau</b></li>
+                            <li><b>Penghitungan Bonus</b> : Peserta Anda yang telah melakukan Pembayaran <b style="color:red">x Rp. 10.000.</b></li>
+                            <li><b>Ilustrasi</b> : Peserta yang mendaftar melalui <b>Link Affilitae anda</b> sebanyak <b>200 orang</b>, dan 200 orang <b>telah menyelesaikan Pembayaran</b>, maka Bonus Anda adalah <b style="color:red">200 x Rp. 10.000 = Rp. 2.000.000,-</b></li>
+                            <li>Pembayaran Bonus dilakukan <b>H-1</b> sebelum acara, melalui <b>No rek Anda</b></li>
+                            <!--<li><b>Bonus Berlaku ketika Peserta memiliki Affiliate 5 atau lebih.</b></li>-->
+                          </ul>
+                        </div>
+                        <!-- <span class="fas fa-gift text-warning fa-3x btn-icon__inner"></span> -->
                       </div>
-                      <h5 class="mb-3"><span class="elementor-icon-list-icon">
-                        <i class="fas fa-check"></i>
-                        </span><b>Juara 1 :</b> Rp. 2.000.000,-</h5>
-                        <h5 class="mb-3"><span class="elementor-icon-list-icon">
-                            <i class="fas fa-check"></i>
-                        </span><b>Juara 2 :</b> Rp. 1.000.000,-</h5>
-                        <h5 class="mb-3"><span class="elementor-icon-list-icon">
-                            <i class="fas fa-check"></i>
-                        </span><b>Juara 3 :</b> Rp. 750.000,-</h5>
-                        <h5><span class="elementor-icon-list-icon">
-                            <i class="fas fa-check"></i>
-                        </span><b>Juara 4-10   :</b>  @ Rp. 500.000</h5>
+                      <div class="elementor-widget-container mb-3">
+                        <p class="elementor-heading-title elementor-size-default mb-3">
+                          Program Affiliate
+                        </p>
+                        <div class="col-md-9 offset-md-2 text-left" style="font-size:20px;color: #000;">
+                          <b>Affiliate</b> adalah sebuah <b>strategi marketing</b> yang memungkinkan kita mendapatkan <b>komisi</b> atas kegiatan pemasaran yang kita lakukan. Kemudahan yang ditawarkan melalui <b>Program Affiliate Marketing</b> ini adalah kamu sebagai <b>affiliate partner</b> tidak <b>memerlukan modal apa pun</b> untuk menjalankan bisnis internet ini.<br/><br/>
+                          Bisnis ini juga bisa dilakukan pada <b>waktu senggang</b> di sela-sela kesibukan kamu. Mendapatkan <b>penghasilan yang mudah</b> saat ini adalah dengan bergabung di <b>Affiliate Program</b>, dan lakukan bisnis <b>tanpa modal dengan komisi yang besar</b>
+                        </div>
+                      </div>                      
+                      
                     </div>
                     <!-- <div class="elementor-element elementor-element-b6a929b elementor-widget elementor-widget-text-editor" data-id="b6a929b" data-element_type="widget" data-widget_type="text-editor.default">
                 <div class="elementor-widget-container">
@@ -4535,7 +4594,9 @@ document,'script','https://connect.facebook.net/en_US/fbevents.js');
             </div>
           </div>
         </section>
+
         <b><b>
+<!--
             <section
               class="elementor-section elementor-top-section elementor-element elementor-element-4edc18 elementor-reverse-mobile elementor-section-boxed elementor-section-height-default elementor-section-height-default"
               data-id="4edc18" data-element_type="section"
@@ -4592,6 +4653,7 @@ document,'script','https://connect.facebook.net/en_US/fbevents.js');
                 </div>
               </div>
             </section>
+-->
             <section
               class="elementor-section elementor-top-section elementor-element elementor-element-5ab879cd elementor-section-boxed elementor-section-height-default elementor-section-height-default"
               data-id="5ab879cd" data-element_type="section"
@@ -4608,7 +4670,12 @@ document,'script','https://connect.facebook.net/en_US/fbevents.js');
                           class="elementor-element elementor-element-2b873f05 elementor-widget elementor-widget-heading"
                           data-id="2b873f05" data-element_type="widget" data-widget_type="heading.default">
                           <div class="elementor-widget-container">
-                            <h3>Bahan promosi untuk dibagikan ke rekan-rekan anda</h3>
+                            <div class="elementor-widget-container mb-3">
+                              <p style="font-size:30px;color: #000;">
+                                Bahan promosi untuk dibagikan ke rekan-rekan anda
+                              </p>
+                            </div>
+                            <!-- <h3>Bahan promosi untuk dibagikan ke rekan-rekan anda</h3> -->
                           </div>
                         </div>
                         <div
@@ -4617,55 +4684,70 @@ document,'script','https://connect.facebook.net/en_US/fbevents.js');
                           <div class="elementor-widget-container">
                             <div class="row">
                                 <div class="col-md-5">
-                                    <img width="905" height="1280" src="{{ asset("brosur_instalasi.jpg") }}" alt="" loading="lazy">
-                                    <a href="{{ route('download.brosur') }}"><i class="fas fa-download"></i> Download Brosur</a>
+                                    <img width="905" height="1280" src="{{ asset("brosur.jpg") }}" alt="" loading="lazy">
+                                    <div class="text-center">
+                                    <a class="btn btn-sm btn-primary text-center" href="{{ route('download.brosur') }}"><i class="fas fa-download"></i> Download Brosur</a>
+                                    </div>
                                 </div>
                                 <div class="col-md-7">
 <textarea class="input w-full box placeholder-theme-13" rows="19" style="font-size: 12pt">
-*WORKSHOP ONLINE*
-*Panduan Instalasi Program Bermanfaat ke Pikiran Bawah Sadar*
-*+ Bonus Kelas “8 Life Skills Untuk Meraih Sukses”*
+*{{ env('JENIS', 0) }}* 
+{{ env('JUDUL_1', 0) }}
+*{{ env('JUDUL_2', 0) }}*
+{{ env('JUDUL_DESCRIPTION', 0) }}
 
-Bagaimana cara menanamkan program sukses di pikiran bawah sadar, sehingga apapun goal yang Anda inginkan, dapat lebih mudah dan lebih cepat tercapai?
+*WAKTU PELAKSANAAN*
+{{ env('TGL', 0) }}
+{{ env('WAKTU', 0) }}
+{{ env('WAKTU_2', 0) }}
 
-*Sabtu, 21 November 2020, 09.30 – 15.00 WIB*
+*FASILITAS*
+•	Mengikuti 6 sesi Pelatihan secara Daring (webinar)
+•	Materi Pelatihan
+•	Format Kertas Kerja Pelaksanaan Pengadaan
+•	PP No. 12 Tahun 2019 
+•	Perpres 12 Tahun 2021
+•	Permendagri No. 77 tahun 2020
+•	Matriks Perubahan
+•	Video Rekaman Pelatihan
+•	E- sertifikat
 
-Harga Promosi Rp. 145.000,-
-(GRATIS Bonus Kelas SenilaI Rp. 450.000,-)
+*Biaya Rp. {{ number_format(env('HARGA_EVENT', 0), 0 , ",", ".") }},-*
 
-*Fasilitas*
-•	Mengikuti 2 sesi Kelas
-•	Materi Paparan
-•	E- Sertifikat
-•	Video Rekaman
-•	Bonus Kelas Senilasi Rp. 450.000,-
+*Link Registrasi* {{ route('landing') }}?ref={{ $user['ref'] }}
 
-Selengkapnya :Klik {{ route("landing") }}?ref={{ $user->ref }}
+WhatsApp Only : 
+*https://wa.me/{{ env('WA_1', 0) }}*
+*Kontak Panitia*
+{{ env('WA_2', 0) }}
+{{ env('WA_3', 0) }}
 
-Panitia : 0811 1102 991 / 0813 1888 6103
+*Kunjungi juga Website :* https://www.LPKN.id
 </textarea>
                                 </div>
                             </div>
 
-                            <h4 class="mt-3">Bagikan Melalui : </h4>
+                            
                             <div class="row">
-                              <div class="col-md-12 col-sm-6">
+                              <div class="col-md-12 col-sm-6 text-center">
+                                  <h4 class="mt-3">Bagikan Melalui : </h4>
                                 <a href="https://api.whatsapp.com/send?text={{ urlencode($msg_wa.route('landing').'?ref='.$user['ref'].$msg_akhir_wa) }}"
                                   target="_blank" type="button" style="color: white" class="btn btn-success"><i
                                     class="fab fa-whatsapp pr-1"></i> Whatsapp</a>
+                                {{--
                                 <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(route('landing').'?ref='.$user['ref']) }}&quote={{ urlencode($msg_fb.route('landing').'?ref='.$user['ref'].$msg_akhir) }}"
                                 target="_blank" type="button" style="color: white" class="btn btn-primary"><i
                                     class="fab fa-facebook-f pr-1"></i> Facebook</a>
                                 <a href="https://twitter.com/intent/tweet?text={{ urlencode($msg_twitter.route('landing').'?ref='.$user['ref']) }}"
                                   target="_blank" style="color: white" type="button" class="btn btn-info"><i
-                                    class="fab fa-twitter pr-1"></i> Twitter</a>
+                                    class="fab fa-twitter pr-1"></i> Twitter</a>--}}
                               </div>
                             </div>
                             <div class="elementor-widget-container mt-3">
-                              <div class="elementor-text-editor elementor-clearfix">
-                                <p style="text-align: center;">{{ $jumlah_affiliate }} <span style="color: #ff9900;">orang mendaftar
+                              <div class="text-center">
+                                <p>{{ $jumlah_affiliate }} <span style="color: #ff9900;">orang mendaftar
                                     menggunakan link yang Anda bagikan</span></p>
-                                <p style="text-align: center;">{{ $jumlah_affiliate_terverifikasi }} <span style="color: #016b21;">orang telah terverifikasi</span></p>
+                                <p>{{ $jumlah_affiliate_terverifikasi }} <span style="color: #016b21;">orang telah terverifikasi</span></p>
                                  @php
                                     $no = 0;
                                 @endphp
@@ -4675,7 +4757,7 @@ Panitia : 0811 1102 991 / 0813 1888 6103
                                         $no +=1;
                                     @endphp
                                     @if ($item->ref_by == $user->ref)
-                                    <p style="text-align: center;">Anda berada diurutan : {{$no}}</p>
+                                    <p>Anda berada diurutan : {{$no}}</p>
                                     @else
                                     @endif
                                 @empty
@@ -4748,6 +4830,7 @@ Panitia : 0811 1102 991 / 0813 1888 6103
                 </div>
               </div>
             </section>
+            @endif
             <section
               class="elementor-section elementor-top-section elementor-element elementor-element-6295434d elementor-section-boxed elementor-section-height-default elementor-section-height-default"
               data-id="6295434d" data-element_type="section"

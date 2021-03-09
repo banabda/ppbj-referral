@@ -74,7 +74,7 @@
                   </tr>
                   <tr>
                     <td class="h1" style="padding: 5px 0 0 0;">
-                      WORKSHOP ONLINE - Panduan Instalasi Program Bermanfaat ke Pikiran Bawah Sadar
+                      Workshop Online - MENULIS SEMUDAH TERSENYUM & UPDATE STATUS
                     </td>
                   </tr>
                 </table>
@@ -98,9 +98,9 @@
             </tr>
             <tr>
               <td class="bodycopy">
-                <strong>WORKSHOP ONLINE - Panduan Instalasi Program Bermanfaat ke Pikiran Bawah Sadar</strong>.<br>
+                <strong>Workshop Online - MENULIS SEMUDAH TERSENYUM & UPDATE STATUS</strong>.<br>
                 Untuk memudahkan koordinasi kegiatan, silahkan join di Group Telegram kami:<br>
-                <a href="https://t.me/joinchat/CLaSQlcHSPjkNxZIi2z4AQ">https://t.me/joinchat/CLaSQlcHSPjkNxZIi2z4AQ</a>
+                <a href="https://t.me/joinchat/QRNA6RJohd8oV1Ak2hr2eg">https://t.me/joinchat/QRNA6RJohd8oV1Ak2hr2eg</a>
               </td>
             </tr>
           </table>
@@ -134,7 +134,21 @@
                       <table class="buttonwrapper" bgcolor="#233289" border="0" cellspacing="0" cellpadding="0">
                         <tr>
                           <td class="button" height="45">
-                            <a href="http://bit.ly/InstalasiAlamBawahSadar">Link Zoom!</a>
+                            <a href="http://bit.ly/HariKe1-WebinarMenulis">Link Zoom Hari Pertama!</a>
+                          </td>
+                        </tr>
+                      </table>
+                      <table class="buttonwrapper" bgcolor="#233289" border="0" cellspacing="0" cellpadding="0" style="margin-top: 10px">
+                        <tr>
+                          <td class="button" height="45" style="margin-top: 30px">
+                            <a href="http://bit.ly/HariKe2-WebinarMenulis">Link Zoom Hari Kedua!</a>
+                          </td>
+                        </tr>
+                      </table>
+                      <table class="buttonwrapper" bgcolor="#233289" border="0" cellspacing="0" cellpadding="0" style="margin-top: 10px">
+                        <tr>
+                          <td class="button" height="45" style="margin-top: 30px">
+                            <a href="http://bit.ly/HariKe3-WebinarMenulis">Link Zoom Hari Ketiga!</a>
                           </td>
                         </tr>
                       </table>

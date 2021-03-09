@@ -40,10 +40,10 @@ class ReferralController extends Controller
         // ];
 
         $data = [
-            "msg_wa" => "*Ikuti Workshop Online*\n*Panduan Instalasi Program Bermanfaat ke Pikiran Bawah Sadar*\n+ Bonus Kelas “8 Life Skills Untuk Meraih Sukses”\n\n Bagaimana cara menanamkan program sukses di pikiran bawah sadar, sehingga apapun goal yang Anda inginkan, dapat lebih mudah dan lebih cepat tercapai?\n\n*Sabtu, 21 November 2020, 09.30 – 15.00 WIB*\n\nHarga Promosi Rp. 145.000,-\n(GRATIS Bonus Kelas SenilaI Rp. 450.000,-)\n\n*Fasilitas*\n•	Mengikuti 2 sesi Kelas\n•	Materi Paparan\n•	E- Sertifikat\n•	Video Rekaman\n•	Bonus Kelas Senilasi Rp. 450.000,-\n\nSelengkapnya Klik ",
-            "msg_twitter" => "Workshop Online\nPanduan Instalasi Program Bermanfaat ke Pikiran Bawah Sadar + Bonus Kelas “8 Life Skills Untuk Meraih Sukses”\n\nSabtu, 21 November 2020, 09.30 – 15.00 WIB\n\nHarga Promosi Rp. 145.000,-\n\nSelengkapnya Klik ",
-            "msg_fb" => "Ikuti Workshop Online\nPanduan Instalasi Program Bermanfaat ke Pikiran Bawah Sadar\n+ Bonus Kelas “8 Life Skills Untuk Meraih Sukses”\n\n Bagaimana cara menanamkan program sukses di pikiran bawah sadar, sehingga apapun goal yang Anda inginkan, dapat lebih mudah dan lebih cepat tercapai?\n\n*Sabtu, 21 November 2020, 09.30 – 15.00 WIB*\n\nHarga Promosi Rp. 145.000,-\n(GRATIS Bonus Kelas SenilaI Rp. 450.000,-)\n\n*Fasilitas*\n•	Mengikuti 2 sesi Kelas\n•	Materi Paparan\n•	E- Sertifikat\n•	Video Rekaman\n•	Bonus Kelas Senilasi Rp. 450.000,-\n\nSelengkapnya Klik ",
-            "msg_akhir_wa" =>"\n\nSampai Ketemu Via Online pada Sabtu, 21 November 2020",
+            "msg_wa" => "*Workshop Vendor Konstruksi (kelas online)* \n\n*Sukses Mengikuti Tender dan Melaksanakan Kontrak Jasa konstruksi*\n(How To Win Construction Tenders)\n\n5 Sesi Pertemuan\n19 – 23 Januari 2021\n13.00 – 15.30 WIB\n\n*Yang Anda Dapatkan*\n• 5 Kali sesi pelatihan\n• Materi Narasumber\n• Grup Diskusi Pengadaan telegram\n• Sertifikat Pelatihan\n• Grup Diskusi\n• Rekaman Video Pembelajaran\n\n*Biaya Rp. 750.000,-*\n\n*Link Registrasi*",
+            "msg_twitter" => "WORKSHOP ONLINE\nMENULIS\nSEMUDAH TERSENYUM & UPDATE STATUS\n(Strategi Membuat tulisan yang Menarik dan Laris)\n\nHari Selasa – Kamis / 24 – 26 November 2020\n\nSelengkapnya Klik ",
+            "msg_fb" => "*Workshop Online*\nPelatihan dan Sertifikasi Hypnotherapy\n*FUNDAMENTAL & ADVANCED HYPNOTHERAPY*\nGelar Profesi / Non Akademik (CH & CHt) dari Indonesian Board of Hypnotherapy (IBH)\n\n7 Sesi Pertemuan\n7 - 14 Desember 2020\n18.30 - 21.00 WIB\n\n*SILABUS PELATIHAN :*\n•  Fundamental Hypnotherapy (3 Sesi Pertemuan)\n•  Advanced Hypnotherapy (2 Sesi Pertemuan)\n•  Smart – Self Healing (2 sesi Pertemuan)\n\n*Selengkapnya klik :* ",
+            "msg_akhir_wa" =>"\nWhatsApp Only : \n*https://wa.me/".env('WA_1', 0)."*\n*Kontak Panitia*\n*https://wa.me/".env('WA_2', 0)."*\n\nDownload Brosur ".url('/download_brosur'),
             "msg_akhir" =>"\n\nDownload Brosur ".url('/download_brosur'),
             "user" => $user,
             "jumlah_affiliate" => $jumlah_affiliate,
@@ -118,6 +118,6 @@ class ReferralController extends Controller
     {
         $pathToFile = storage_path('public');
 
-        return response()->download('brosur_instalasi.jpg');
+        return response()->download('brosur.jpg');
     }
 }

@@ -16,16 +16,18 @@ class OrderShipped extends Mailable
 
     public $user;
     public $subject;
+    public $view;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($subject, $user)
+    public function __construct($subject, $user, $view)
     {
         $this->subject = $subject;
         $this->user = $user;
+        $this->view = $view;
     }
 
     /**
@@ -36,6 +38,6 @@ class OrderShipped extends Mailable
     public function build()
     {
         $this->subject($this->subject)->from('admin@diklatonline.id', 'LPKN Training Center')
-            ->view('email.template');
+            ->view($this->view);
     }
 }

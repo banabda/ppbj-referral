@@ -14,4 +14,8 @@ class ReferrCountTerverifikasi extends Model
     public function user(){
         return $this->hasOne('App\Models\User','ref','ref_by');
     }
+
+    public function refer_count(){
+        return $this->hasOne('App\Models\ReferrCount','ref_by','ref_by');
+    }
 }

@@ -26,4 +26,6 @@ RewriteCond %{HTTP_HOST} ^www\.iso\.diklatonline\.id$
 RewriteRule ^/?$ "https\:\/\/iso\.diklatonline\.id\/" [R=301,L]
 RewriteCond %{HTTP_HOST} ^mind\.diklatonline\.id$
 RewriteRule ^/?$ "https\:\/\/mind\.diklatonline\.id\/" [R=301,L]
+RewriteCond %{HTTP_HOST} ^vendorkonstruksi\.lpkn\.id$
+RewriteRule ^/?$ "https\:\/\/vendorkonstruksi\.lpkn\.id\/" [R=301,L]
 

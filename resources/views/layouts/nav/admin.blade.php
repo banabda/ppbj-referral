@@ -7,9 +7,15 @@
     <div class="side-nav__devider my-6"></div>
     <ul>
         <li>
-            <a href="{{ route('admin.dashboard') }}" class="side-menu side-menu--active">
+            <a href="{{ route('admin.dashboard') }}" class="side-menu @if (Route::currentRouteName() == 'admin.dashboard') side-menu--active @else side-menu @endif">
                 <div class="side-menu__icon"> <i data-feather="home"></i> </div>
                 <div class="side-menu__title"> Dashboard </div>
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('admin.users_affiliasi') }}" class="side-menu @if (Route::currentRouteName() == 'admin.users_affiliasi') side-menu--active @else side-menu @endif">
+                <div class="side-menu__icon"> <i data-feather="users"></i> </div>
+                <div class="side-menu__title"> Peserta Affiliasi</div>
             </a>
         </li>
     </ul>
