@@ -4730,17 +4730,6 @@ WhatsApp Only :
                             
                             <div class="row">
                               <div class="col-md-12 col-sm-6 text-center">
-                                  <h4 class="mt-3">Bagikan Melalui : </h4>
-                                <a href="https://api.whatsapp.com/send?text={{ urlencode($msg_wa.route('landing').'?ref='.$user['ref'].$msg_akhir_wa) }}"
-                                  target="_blank" type="button" style="color: white" class="btn btn-success"><i
-                                    class="fab fa-whatsapp pr-1"></i> Whatsapp</a>
-                                {{--
-                                <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(route('landing').'?ref='.$user['ref']) }}&quote={{ urlencode($msg_fb.route('landing').'?ref='.$user['ref'].$msg_akhir) }}"
-                                target="_blank" type="button" style="color: white" class="btn btn-primary"><i
-                                    class="fab fa-facebook-f pr-1"></i> Facebook</a>
-                                <a href="https://twitter.com/intent/tweet?text={{ urlencode($msg_twitter.route('landing').'?ref='.$user['ref']) }}"
-                                  target="_blank" style="color: white" type="button" class="btn btn-info"><i
-                                    class="fab fa-twitter pr-1"></i> Twitter</a>--}}
                               </div>
                             </div>
                             <div class="elementor-widget-container mt-3">

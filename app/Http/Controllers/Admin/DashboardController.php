@@ -358,7 +358,7 @@ class DashboardController extends Controller
     
     public function send_wa($user){
         //send wa
-        $group_wa_nya = env('WA_GROUP_5', 0);
+        $group_wa_nya = env('WA_GROUP_1', 0);
         $gelombang_nya = env('TGL', '');
         $messages =
 'Yth Bapak/Ibu 
@@ -375,12 +375,12 @@ Terima kasih sudah melakukan pembayaran
 '.env('WAKTU', 0).'
 '.env('WAKTU_2', 0).'
 
-*Agar Memudahkan Koordinasi Kegiatan Silahkan Bergabung di Group WhatsApp*
+*Agar Memudahkan Koordinasi Kegiatan Silahkan Bergabung Group WhatsApp*
 
-Link group WhatsApp : '.$group_wa_nya.'
+Link Group WhatsApp : '.$group_wa_nya.'
 
 *Link Zoom Workshop Online :*
-(Untuk link pertemuan akan kami infokan di dalam grup WA)
+(Untuk link pertemuan akan kami infokan di dalam Group WhatsApp)
 
 Komunikasi selanjutnya dengan panitia :
 WhatsApp Only :

@@ -111,7 +111,7 @@ ooq('track', 'SalesPageView');
                   <span class="d-block h3 text-warning font-weight-light mb-1"
                         data-scs-animation-in="fadeInUp">
                     <span class="font-weight-semi-bold">
-                    {{ env('JUDUL_1', 0) }}
+                    <i>{{ env('JUDUL_1', 0) }}</i>
                     </span>
                   </span>
                   <h1 class="text-white h4 display-5 font-size-md-down-2 mb-2"
@@ -305,9 +305,8 @@ ooq('track', 'SalesPageView');
         <div class="w-md-60 w-lg-70 mx-md-auto">
           <blockquote class="font-weight-light mb-0 text-white">
             <ul>
-              <li>Senin – Sabtu / 8 – 13 Maret 2021</li>
-              <li>18.30 – 20.30 WIB ( 8 – 10 Maret 2021)</li>
-              <li>09.30 – 11.30 WIB ( 11 – 13 Maret 2021)</li>
+              <li>Senin – Sabtu / 19 – 24 April 2021</li>
+              <li>13.00 – 15.00 WIB</li>
               <li>Media Online ZOOM</li>
             </ul>
           </blockquote>
@@ -482,10 +481,12 @@ ooq('track', 'SalesPageView');
                         Referral Saya
                     </a>
                   @endif
+                  
                     <br/><br/>
                     <a class="btn btn-sm btn-secondary transition-3d-hover text-center mb-5" target="blank_" href="{{ asset('') }}surat.pdf">
                         Download Surat
                     </a>
+                    
                   </div>
 
 
@@ -510,6 +511,7 @@ ooq('track', 'SalesPageView');
               <p class="text-white"><b>Lembaga Pengembangan dan Konsultasi Nasional (LPKN)</b> merupakan lembaga Diklat resmi yang berdiri sejak tahun 2005, dan telah <b>Terakreditasi A</b> Oleh Lembaga Kebijakan Pengadaan Barang/ Jasa Pemerintah <b>(LKPP) – RI</b>, untuk kegiatan Pelaksanaan Pelatihan Pengadaan dan Sertifikasi Barang/ Jasa pemerintah.
 Saat ini telah memiliki <b>Alumni sebanyak 1.300.580 orang</b>, yang tersebar di seluruh Indonesia, <b>LPKN juga telah medapatkan 2 Rekor MURI</b>, dalam penyelenggaraan Webinar dengan jumlah Peserta lebih dari <b>100.000 orang</b>.</p>
               <p class="text-white">Kunjungi Juga Website <b><a href="https://lpkn.id" target="blank_">www.LPKN.id</a></b> </p>
+              <h3><p class="text-white">Kontak Panitia : {{ env('WA_2', 0) }},  {{ env('WA_3', 0) }}<b> <br/>WA CENTER : <a href="https://wa.me/{{ env('WA_1', 0) }}" target="blank_">0{{ substr(env('WA_1', 0),2) }}</a></b> </p></h3>
             </div>
           </div>
       </div>
