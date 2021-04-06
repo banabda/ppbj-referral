@@ -43,7 +43,7 @@ class ReminderWhatsApp extends Command
     public function handle()
     {
         if (carbon::now()->format('d.m.y') < Carbon::createFromDate(2021, 4, 19)->format('d.m.y')) {
-            $user = User::where('status_pembayaran', false)->get();
+            $user = User::where('status_pembayaran', false)->whereNull('nama_rek')->get();
             $users = [];
 
             foreach ($user as $value) {
@@ -53,15 +53,15 @@ class ReminderWhatsApp extends Command
                 $usr->email = $value->email;
                 $usr->hp = $value->hp;
                 if ($usr->id == 2) {
-                    log::info([$value->created_at->addDays(4)->format('d.m.y H:i'), Carbon::now()->format('d.m.y H:i')]);
+                    log::info([$value->created_at->addDays(4)->format('d.m.y'), Carbon::now()->format('d.m.y')]);
                 }
-                if ($value->created_at->addDays(4)->format('d.m.y H:i') == Carbon::now()->format('d.m.y H:i')) {
+                if ($value->created_at->addDays(4)->format('d.m.y') == Carbon::now()->format('d.m.y')) {
                     $usr->kirim = 1;
                     array_push($users, $usr);
-                } else if ($value->created_at->addDays(6)->format('d.m.y H:i') == Carbon::now()->format('d.m.y H:i')) {
+                } else if ($value->created_at->addDays(6)->format('d.m.y') == Carbon::now()->format('d.m.y')) {
                     $usr->kirim = 2;
                     array_push($users, $usr);
-                } else if ($value->created_at->addDays(8)->format('d.m.y H:i') == Carbon::now()->format('d.m.y H:i')) {
+                } else if ($value->created_at->addDays(8)->format('d.m.y') == Carbon::now()->format('d.m.y')) {
                     $usr->kirim = 3;
                     array_push($users, $usr);
                 }
@@ -128,7 +128,7 @@ Setelah di konfirmasi maka anda akan mendapatkan *WhatsApp* ke nomor handphone A
                         'form_params' => $data
                     ])->getBody()->getContents();
                     array_push($result, $rsl);
-                    // sleep(2);
+                    sleep(1);
                 }
             } else {
                 log::info('No Reminder');
