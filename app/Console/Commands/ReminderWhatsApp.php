@@ -130,6 +130,8 @@ Setelah di konfirmasi maka anda akan mendapatkan *WhatsApp* ke nomor handphone A
                     array_push($result, $rsl);
                     // sleep(2);
                 }
+            } else {
+                log::info('No Reminder');
             }
             log::info(['Reminder', $result]);
             return 0;
