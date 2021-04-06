@@ -53,15 +53,15 @@ class ReminderWhatsApp extends Command
                 $usr->email = $value->email;
                 $usr->hp = $value->hp;
                 if ($usr->id == 2) {
-                    log::info([$value->created_at->addDays(4)->format('d.m.y H:i'), Carbon::now()->format('d.m.y H:i')]);
+                    log::info([$value->created_at->addDays(4)->format('d.m.y'), Carbon::now()->format('d.m.y')]);
                 }
-                if ($value->created_at->addDays(4)->format('d.m.y H:i') == Carbon::now()->format('d.m.y H:i')) {
+                if ($value->created_at->addDays(4)->format('d.m.y') == Carbon::now()->format('d.m.y')) {
                     $usr->kirim = 1;
                     array_push($users, $usr);
-                } else if ($value->created_at->addDays(6)->format('d.m.y H:i') == Carbon::now()->format('d.m.y H:i')) {
+                } else if ($value->created_at->addDays(6)->format('d.m.y') == Carbon::now()->format('d.m.y')) {
                     $usr->kirim = 2;
                     array_push($users, $usr);
-                } else if ($value->created_at->addDays(8)->format('d.m.y H:i') == Carbon::now()->format('d.m.y H:i')) {
+                } else if ($value->created_at->addDays(8)->format('d.m.y') == Carbon::now()->format('d.m.y')) {
                     $usr->kirim = 3;
                     array_push($users, $usr);
                 }
