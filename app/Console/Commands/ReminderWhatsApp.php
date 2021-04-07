@@ -123,8 +123,8 @@ Setelah di konfirmasi maka anda akan mendapatkan *WhatsApp* ke nomor handphone A
                         "phone" => $phone,
                         "body" => $message
                     ];
-
-                    $rsl = $client->request('POST', 'https://eu216.chat-api.com/instance194657/' . '/sendMessage' . '?token=7fsnbsm1kvhubq9m', [
+                    // $rsl = env('WA_URL') . '/sendMessage?token=' . env('WA_TOKEN');
+                    $rsl = $client->request('POST', env('WA_URL') . '/sendMessage?token=' . env('WA_TOKEN'), [
                         'form_params' => $data
                     ])->getBody()->getContents();
                     array_push($result, $rsl);

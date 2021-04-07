@@ -21,27 +21,28 @@ use Illuminate\Support\Facades\Storage;
 
 class RegisterController extends Controller
 {
-    
+
     public function index(Request $request)
     {
-        if(session("lpkn_ref_email")){
+        if (session("lpkn_ref_email")) {
             return redirect()->route('referral.pendaftaran');
         }
-        
+
         return redirect()->route('landing');
 
         $params = $request->all();
 
         $data = array();
 
-        if(isset($params['ref'])){
+        if (isset($params['ref'])) {
             $data['ref'] = $params['ref'];
         }
 
         return View::make('pages.acara.register', $data);
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $data = $request->all();
 
         $validator = Validator::make($data, array(
@@ -64,9 +65,9 @@ class RegisterController extends Controller
                 'messages' => $validator->errors()->first(),
             ], 422);
         }
-        
-        if(substr($data['no_hp'],0,1) == '0'){
-            $no_hp = substr_replace($data['no_hp'],"",0,1);
+
+        if (substr($data['no_hp'], 0, 1) == '0') {
+            $no_hp = substr_replace($data['no_hp'], "", 0, 1);
         } else {
             $no_hp = $data['no_hp'];
         }
@@ -93,15 +94,15 @@ class RegisterController extends Controller
         $user = User::firstOrCreate($input);
 
         // Mail::to($user->email)->send(new OrderShipped('Pendaftaran Berhasil!', $user, 'email.template_register'));
-        
+
         $this->send_wa($user);
 
         Session::put('lpkn_ref_email', $data['email']);
         Session::put('selesai_pendaftaran', $data['email']);
-        
-        $user = User::with('mengundang:ref_by,name,instansi','diundang')->where('email', $data['email'])->first();
+
+        $user = User::with('mengundang:ref_by,name,instansi', 'diundang')->where('email', $data['email'])->first();
         $harga = 1250000;
-		$user->total_harga = (int) $harga + $user->id;
+        $user->total_harga = (int) $harga + $user->id;
         // Mail::to($data['email'])->send(new OrderShipped('Pendaftaran Berhasil!', $user, 'email.template_register'));
 
         return response()->json([
@@ -109,38 +110,38 @@ class RegisterController extends Controller
             'messages' => "Berhasil registrasi acara",
             'route' => route('referral.pendaftaran')
         ], 200);
-
     }
-    
-    public function send_wa($user){
+
+    public function send_wa($user)
+    {
         $harga = env('HARGA_EVENT', 0);
-		$total_harga = (int) $harga + $user->id;
+        $total_harga = (int) $harga + $user->id;
 
         //send wa
         $messages =
-'Selamat datang '.$user->name.' ☺️
+            'Selamat datang ' . $user->name . ' ☺️
 
 Kami sudah terima registrasi Anda,
-*'.env('JENIS', 0).'*
-*'.env('JUDUL_2', 0).'*
-'.env('JUDUL_DESCRIPTION', 0).'
+*' . env('JENIS', 0) . '*
+*' . env('JUDUL_2', 0) . '*
+' . env('JUDUL_DESCRIPTION', 0) . '
 
-Silahkan transfer senilai *Rp.'.number_format($total_harga, 0 , ",", ".").'* ke rekening dibawah ini:
+Silahkan transfer senilai *Rp.' . number_format($total_harga, 0, ",", ".") . '* ke rekening dibawah ini:
 
 BRI
 No. Rek. 213501000250301
 Atas Nama: Lembaga Pengembangan dan Konsultasi Nasional
 
-Mohon upload Bukti transfer di link '.route("landing").'
+Mohon upload Bukti transfer di link ' . route("landing") . '
 
-*Download surat* : '.asset('').'surat.pdf
+*Download surat* : ' . asset('') . 'surat.pdf
 
 Komunikasi selanjutnya dengan panitia :
 WhatsApp Only :
-*https://wa.me/'.env('WA_1', 0).'*
+*https://wa.me/' . env('WA_1', 0) . '*
 Panitia :
-*'.env('WA_2', 0).'*
-*'.env('WA_3', 0).'*
+*' . env('WA_2', 0) . '*
+*' . env('WA_3', 0) . '*
 
 Terimakasih
 
@@ -152,12 +153,12 @@ Setelah di konfirmasi maka anda akan mendapatkan *WhatsApp* ke nomor handphone A
 *Kunjungi juga Website* : https://www.LPKN.id';
 
         $data_wa = array(
-           'phone' => '62'.$user->hp,
-           'body' => $messages
+            'phone' => '62' . $user->hp,
+            'body' => $messages
         );
 
         $data_string = json_encode($data_wa);
-        $ch = curl_init('https://eu216.chat-api.com/instance194657/sendMessage?token=7fsnbsm1kvhubq9m');
+        $ch = curl_init(env('WA_URL') . '/sendMessage?token=' . env('WA_TOKEN'));
 
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
@@ -165,15 +166,19 @@ Setelah di konfirmasi maka anda akan mendapatkan *WhatsApp* ke nomor handphone A
         curl_setopt($ch, CURLOPT_VERBOSE, 0);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 0);
         curl_setopt($ch, CURLOPT_TIMEOUT, 15);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-           'Content-Type: application/json',
-           'Content-Length: ' . strlen($data_string)
-           )
+        curl_setopt(
+            $ch,
+            CURLOPT_HTTPHEADER,
+            array(
+                'Content-Type: application/json',
+                'Content-Length: ' . strlen($data_string)
+            )
         );
         $result = curl_exec($ch);
     }
 
-    public function update(Request $request){
+    public function update(Request $request)
+    {
         $data = $request->all();
 
         $validator = Validator::make($data, array(
@@ -189,17 +194,17 @@ Setelah di konfirmasi maka anda akan mendapatkan *WhatsApp* ke nomor handphone A
 
         $user = User::where('email', session('lpkn_ref_email'))->first();
 
-        if($user){
+        if ($user) {
             $uId = (string) Uuid::generate();
             $folder = "upload_pembayaran";
-            $path = 'dokumen/'. ((int) ($user->id / 100)) . "/". $user->id . "/". $folder;
+            $path = 'dokumen/' . ((int) ($user->id / 100)) . "/" . $user->id . "/" . $folder;
             $fileName = $request->file->getClientOriginalName();
-    
+
             $path = Storage::disk('public_uploads')->put(
                 $path,
                 $request->file('file')
             );
-    
+
             $filedata = [
                 'name' => $fileName,
                 'address' => $uId,
@@ -209,11 +214,11 @@ Setelah di konfirmasi maka anda akan mendapatkan *WhatsApp* ke nomor handphone A
                 'updated_by' => $user->id
             ];
             $file = File::firstOrCreate($filedata);
-    
+
             $input = array(
                 'file_id' => $file->id
             );
-    
+
             $UserPayments = UserPayments::updateOrCreate(['user_id' => $user->id], $input);
 
             return response()->json([
@@ -221,18 +226,17 @@ Setelah di konfirmasi maka anda akan mendapatkan *WhatsApp* ke nomor handphone A
                 'messages' => "Berhasil registrasi acara",
                 'route' => route('referral.pendaftaran')
             ], 200);
-        }else{
+        } else {
             return response()->json([
                 'status'    => "fail",
                 'messages' => "Session anda telah berakhir harap refresh halaman..",
             ], 422);
         }
-
-
     }
 
-    public function generate_referral($length){
-        $str_result = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'; 
+    public function generate_referral($length)
+    {
+        $str_result = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
         return substr(str_shuffle($str_result), 0, $length);
     }
 }
