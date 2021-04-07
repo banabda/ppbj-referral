@@ -39,6 +39,7 @@ class TestCron extends Command
     public function handle()
     {
         Log::info('working');
+        Log::channel('cron')->info('Something happened!');
         return 0;
     }
 }

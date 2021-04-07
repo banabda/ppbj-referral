@@ -131,9 +131,11 @@ Setelah di konfirmasi maka anda akan mendapatkan *WhatsApp* ke nomor handphone A
                     sleep(1);
                 }
             } else {
-                log::info('No Reminder');
+                Log::channel('cron')->info('No Reminder');
             }
-            log::info(['Reminder', $result]);
+            // log::info(['Reminder', $result]);
+            Log::channel('cron')->info(['Reminder', $result]);
+
             return 0;
         }
         return 0;
