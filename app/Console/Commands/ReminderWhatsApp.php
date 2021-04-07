@@ -82,7 +82,7 @@ class ReminderWhatsApp extends Command
 apakah jadi mengikuti kegiatan Pelatihan ?
 
 ' . env('JENIS') . env('JUDUL_1') . '
-' . env('JUDUL_2') . '
+*' . env('JUDUL_2') . '*
 ' . env('JUDUL_DESCRIPTION') . '
 
 Jumlah sesi: ' . env('JUMLAH_SESI') . '
